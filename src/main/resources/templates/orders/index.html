@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+</head>
+<body>
+<h1>Orders</h1>
+
+  <div th:each="orders : ${orders}">
+    <a th:href="@{/orders/{id}(id=${orders.getId()})}"
+       th:text="${orders.getId()}">name</a>
+  </div>
+
+
+<a href="/orders/new">Create new order</a>
+<br/><br/>
+<a href="/">Go to Navigation</a>
+</body>

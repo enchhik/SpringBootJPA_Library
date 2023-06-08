@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en ru uk" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update books</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/books/{id}(id=${books.getId()})}" th:object="${books}">
+    <label for="title">Enter title</label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
+    <br/>
+
+    <label for="isbn">Enter isbn: </label>
+    <input type="text" th:field="*{isbn}" id="isbn">
+    <div style="color:red" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">Isbn error</div>
+    <br/>
+
+    <label for="releaseDate">Enter releaseDate: </label>
+    <input type="number" th:field="*{releaseDate}" id="releaseDate">
+    <div style="color:red" th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}">ReleaseDate error</div>
+    <br/>
+
+    <label for="genre.id">Select genre: </label>
+    <select th:field="*{genre.id}" id="genre.id">
+        <option th:each="genre : ${genresList}" th:value="${genre.id}" th:text="${genre.name}"></option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('genre.id')}" th:errors="*{genre.id}">genre id error</div>
+    <br/>
+
+    <label for="authorList">Select authors: </label>
+    <select th:field="*{authorList}" id="authorList" multiple>
+        <option th:each="author : ${authorList}" th:value="${author.id}" th:text="${author.name}"></option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('authorList')}" th:errors="*{authorList}">authorList error</div>
+
+    <br/>
+
+    <input type="submit" value="Update!">
+</form>
+
+</body>
+</html>

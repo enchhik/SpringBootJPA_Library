@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en ru uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Show</title>
+</head>
+<body>
+<p th:text="${books.getTitle()}">VALUE</p>
+<p th:text="${'Isbn: ' + books.getIsbn()}">VALUE</p>
+<p th:text="${books.getReleaseDate()}">VALUE</p>
+<p th:text="${'Genre: ' + books.getGenre().getName()}">VALUE</p>
+
+<p>
+  Authors:
+  <span th:each="author : ${books.getAuthorList()}" th:text="${author.name} + ', '"></span>
+</p>
+
+<a th:href="@{/books/{id}/edit(id=${books.id})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/books/{id}(id=${books.id})}">
+  <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

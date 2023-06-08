@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en ru uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Order</title>
+</head>
+<body>
+<h1>Edit Order</h1>
+
+<form th:method="PATCH" th:action="@{/orders/{id}(id=${orders.id})}" th:object="${orders}">
+
+    <label for="user.id">Select user: </label>
+    <select th:field="*{user.id}" id="user.id">
+        <option th:each="user : ${usersList}" th:value="${user.id}" th:text="${user.name}"></option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('user.id')}" th:errors="*{user.id}">user id error</div>
+    <br>
+    <label for="booksList">Select books: </label>
+    <select th:field="*{booksList}" id="booksList" multiple>
+        <option th:each="book : ${booksList}" th:value="${book.id}" th:text="${book.title}"></option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('booksList')}" th:errors="*{booksList}">booksList error</div>
+    <br/>
+    <label for="orderDate">Order Date:</label>
+    <input type="date" id="orderDate" name="orderDate">
+    <div style="color:red" th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}">orderDate error</div>
+    <br>
+    <input type="submit" value="Update!">
+</form>
+
+</body>
+</html>

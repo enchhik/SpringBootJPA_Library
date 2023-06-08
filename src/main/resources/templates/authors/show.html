@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en ru uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Show genres</title>
+</head>
+<body>
+<p th:text="${authors.getId()}">VALUE</p>
+<p th:text="${authors.getName()}">VALUE</p>
+<p th:text="${authors.getBirthdate()}">VALUE</p>
+
+<a th:href="@{/authors/{id}/edit(id=${authors.getId()})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/authors/{id}(id=${authors.getId()})}">
+  <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>
